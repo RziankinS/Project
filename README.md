@@ -21,7 +21,7 @@
 
 ---
 
-###  1.4. Проводим проверку, выполнения команды "terraform apply -auto-approve" для создания сервисного аккаунта и бакета
+###  1.4.1. Проводим проверку, выполнения команды "terraform apply -auto-approve" для создания сервисного аккаунта и бакета
 
 <details>
 <summary>terraform apply --auto-approve</summary>
@@ -45,7 +45,7 @@ sergei@XWHD911:~/yandex-cloud/terraform/bucket$
 
 
 
-###  1.4.2 Проводим проверку, выполнения команды "terraform apply -auto-approve" для конфигурации инфраструктуры
+###  1.4.2. Проводим проверку, выполнения команды "terraform apply -auto-approve" для конфигурации инфраструктуры
 
 <details>
 <summary>terraform apply --auto-approve</summary>
@@ -398,14 +398,33 @@ sergei@XWHD911:~/yandex-cloud/terraform$
 ---
 
 ![5](https://github.com/RziankinS/devops-netology/blob/ca6d747d9463e0a73f462f7f459f52df051706ad/screen/project/vms.png)
-
 ---
+
 ## 2. Создание Kubernetes кластера
 
-- [x] Cоздания кластера k8s выполняется при помощи Kubespray:
+- [x] Cоздания кластера k8s выполняется при помощи Kubespray
+- [x] Объявляем наши IP-адреса:
 ```bash
 sergei@XWHD911:~/yandex-cloud/kubespray$ declare -a IPS=(51.250.65.18 51.250.100.25 51.250.37.143)
 sergei@XWHD911:~/yandex-cloud/kubespray$ CONFIG_FILE=inventory/mycluster/hosts.yaml python3.11 contrib/inventory_builder/inventory.py ${IPS[@]}
+DEBUG: Adding group all
+DEBUG: Adding group kube_control_plane
+DEBUG: Adding group kube_node
+DEBUG: Adding group etcd
+DEBUG: Adding group k8s_cluster
+DEBUG: Adding group calico_rr
+DEBUG: adding host node1 to group all
+DEBUG: adding host node2 to group all
+DEBUG: adding host node3 to group all
+DEBUG: adding host node1 to group etcd
+DEBUG: adding host node2 to group etcd
+DEBUG: adding host node3 to group etcd
+DEBUG: adding host node1 to group kube_control_plane
+DEBUG: adding host node2 to group kube_control_plane
+DEBUG: adding host node1 to group kube_node
+DEBUG: adding host node2 to group kube_node
+DEBUG: adding host node3 to group kube_node
+sergei@XWHD911:~/yandex-cloud/kubespray$
 ```
 - [x] Прописываем хосты в kubespray/inventory/mycluster/hosts.yaml
 ```yaml
@@ -452,4 +471,28 @@ sergei@XWHD911:~/yandex-cloud/kubespray$ ansible-playbook -i inventory/mycluster
 
 ![6](https://github.com/RziankinS/devops-netology/blob/c78c5ee15151c3d058a891821c2268e449a93ae1/screen/project/%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%B1%D1%83%D0%BA%D0%B0.png)
 
-sergei@XWHD911:~/yandex-cloud/kubespray$ mkdir -p ~/.kube && ssh ubuntu@51.250.65.18 "sudo cat /root/.kube/config" >> ~/.kube/config
+- [x]  Копируем себе "kube/config": 
+
+```bash     
+sergei@XWHD911:~/yandex-cloud/kubespray$ mkdir -p ~/.kube 
+sergei@XWHD911:~/yandex-cloud/kubespray$ scp ubuntu@51.250.65.18:~/.kube/config ~/.kube/config
+```
+- [x] Указываем публичный IP мастер-ноды:
+```
+server: https://51.250.65.18:6443
+```
+- [x] kubectl get pods --all-namespaces:
+
+![7](https://github.com/RziankinS/devops-netology/blob/3c18e157c75adc67b51f1c4866f1089335cd16ec/screen/project/all%20namespaces.png)
+---
+
+## 3. Создание тестового приложения
+
+- [x] [Git репозиторий](https://github.com/RziankinS/mynginxrepo) с тестовым приложением и [Dockerfile](https://github.com/RziankinS/mynginxrepo/blob/d97ab0a95d88bb210e5ec9ee6f3311a66c4abc36/Dockerfile).
+- [x] [Регистри с собранным docker image:DockerHub](https://hub.docker.com/repository/docker/rziankins/testing_dev_stend/tags).
+
+![8](https://github.com/RziankinS/devops-netology/blob/bbcd9ff4f1676ab1c7a84e42a511ffba92ed8455/screen/project/docker_build.png)
+
+---
+![9](https://github.com/RziankinS/devops-netology/blob/bbcd9ff4f1676ab1c7a84e42a511ffba92ed8455/screen/project/dockerhub.png) 
+---
