@@ -565,3 +565,33 @@ pod/stable-prometheus-node-exporter-tdwjw                    1/1     Running   0
 - [x] Http доступ к тестовому приложению:
 - Тестовое приложение http://51.250.65.18:31000/
 ![16](https://github.com/RziankinS/devops-netology/blob/f37f5bbc9bd0673e187fdcc06064516e96839571/screen/project/test.png)
+---
+
+## 5. Установка и настройка CI/CD через GitHub Actions
+
+- [x] Для автоматической сборки и деплоя приложения настраиваем [workflows](https://github.com/RziankinS/mynginxrepo/blob/d97ab0a95d88bb210e5ec9ee6f3311a66c4abc36/.github/workflows/main.yml)
+      
+- [x] Происходит сборка приложения:
+      
+![17](https://github.com/RziankinS/devops-netology/blob/74a72f1a96ff03a71c9f1d56e0b2fdf85629c6cd/screen/project/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-10-12%2017-16-16.png)
+![18](https://github.com/RziankinS/devops-netology/blob/74a72f1a96ff03a71c9f1d56e0b2fdf85629c6cd/screen/project/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-10-12%2017-16-31.png)
+![19](https://github.com/RziankinS/devops-netology/blob/74a72f1a96ff03a71c9f1d56e0b2fdf85629c6cd/screen/project/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-10-12%2017-23-07.png)
+
+---
+- [x] Вносим изменения:
+
+![20](https://github.com/RziankinS/devops-netology/blob/74a72f1a96ff03a71c9f1d56e0b2fdf85629c6cd/screen/project/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-10-12%2018-15-26.png)
+
+![21](https://github.com/RziankinS/devops-netology/blob/74a72f1a96ff03a71c9f1d56e0b2fdf85629c6cd/screen/project/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-10-12%2018-16-11.png)
+
+![22](https://github.com/RziankinS/devops-netology/blob/74a72f1a96ff03a71c9f1d56e0b2fdf85629c6cd/screen/project/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-10-12%2018-17-19.png)
+
+![23](https://github.com/RziankinS/devops-netology/blob/c6fe6181fd0267874a9f9d75b05c96e675ff6b97/screen/project/git%20push%20v202.png)
+
+![24](https://github.com/RziankinS/devops-netology/blob/74a72f1a96ff03a71c9f1d56e0b2fdf85629c6cd/screen/project/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-10-12%2018-26-40.png)
+
+![25](https://github.com/RziankinS/devops-netology/blob/74a72f1a96ff03a71c9f1d56e0b2fdf85629c6cd/screen/project/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202024-10-12%2018-57-00.png)
+
+---
+- [x] Интерфейс ci/cd сервиса доступен по http:
+[mynginxrepo](https://github.com/RziankinS/mynginxrepo/actions)
