@@ -9,7 +9,7 @@
 
 ---
 
-###  1.2. Подготавливаем backend для Terraform, вариант S3 bucket:
+###  1.2. Подготавливаем backend для Terraform, вариант [S3 bucket](https://github.com/RziankinS/Project/blob/f39e2995da4c60d86699805842d504a22de3b4e6/terraform/bucket/bucket.tf):
       
 ![2](https://github.com/RziankinS/devops-netology/blob/935d01b42eac2857a5db1a4e5f0cd34902ba4112/screen/project/tfstate.png)
 
