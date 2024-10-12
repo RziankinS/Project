@@ -496,3 +496,46 @@ server: https://51.250.65.18:6443
 ---
 ![9](https://github.com/RziankinS/devops-netology/blob/bbcd9ff4f1676ab1c7a84e42a511ffba92ed8455/screen/project/dockerhub.png) 
 ---
+
+## 4. Подготовка cистемы мониторинга и деплой приложения
+
+### 4.1. Создаем namespace monitoring:
+
+![10](https://github.com/RziankinS/devops-netology/blob/c6fa0c5e468d9163fb4e5d6d94c2c74afe4b163a/screen/project/namespace%20monitoring.png)
+
+---
+
+### 4.2. Деплой при помощи Helm charts:
+
+![11](https://github.com/RziankinS/devops-netology/blob/a530dbae8a2c48256c6404a5a031329cb719c759/screen/project/helm.png)
+
+### 4.3. Статус мониторинга:
+
+![12](https://github.com/RziankinS/devops-netology/blob/6e01abd408f7751b7169fc96a6c7d81b61f04eff/screen/project/status_monitoring.png)
+
+---
+- [x] Для доступа к мониторингу необходимо, сменить тип сервиса и добавить внешний порт:
+```bash
+sergei@XWHD911:~/yandex-cloud$ kubectl get svc stable-kube-prometheus-sta-prometheus -n monitoring
+NAME                                    TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+stable-kube-prometheus-sta-prometheus   NodePort   10.233.48.11   <none>        9090:30100/TCP   26m
+sergei@XWHD911:~/yandex-cloud$ kubectl get svc stable-kube-prometheus-sta-prometheus -n monitoring -o jsonpath='{.spec.ports[0].nodePort}'
+30100
+
+sergei@XWHD911:~/yandex-cloud$ kubectl edit svc stable-grafana -n monitoring
+service/stable-grafana edited
+sergei@XWHD911:~/yandex-cloud$ kubectl get svc stable-grafana -n monitoring
+NAME             TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
+stable-grafana   NodePort   10.233.9.69   <none>        80:30090/TCP   42m
+sergei@XWHD911:~/yandex-cloud$ kubectl get svc stable-grafana -n monitoring -o jsonpath='{.spec.ports[0].nodePort}'
+30090
+```
+![13](https://github.com/RziankinS/devops-netology/blob/d03dd85fab945f40d2ba9050f05d3760a3a6b069/screen/project/kubectl%20get%20svc.png)
+
+---
+### 4.4. Http доступ к web интерфейсу Grafana:
+- Grafana http://51.250.65.18:30090/
+- Логин:```admin``` Пароль:```prom-operator```
+![14](https://github.com/RziankinS/devops-netology/blob/d03dd85fab945f40d2ba9050f05d3760a3a6b069/screen/project/grafana.png)
+
+---
