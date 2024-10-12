@@ -21,7 +21,7 @@
 
 ---
 
-###  1.4.1. Проводим проверку, выполнения команды "terraform apply -auto-approve" для создания сервисного аккаунта и бакета
+###  1.4. Проводим проверку, выполнения команды "terraform apply -auto-approve" для создания сервисного аккаунта и бакета
 
 <details>
 <summary>terraform apply --auto-approve</summary>
@@ -42,9 +42,10 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
 sergei@XWHD911:~/yandex-cloud/terraform/bucket$
 ```
 </details>
----
 
-###  1.4.2. Проводим проверку, выполнения команды "terraform apply -auto-approve" для конфигурации инфраструктуры
+
+
+###  1.4.2 Проводим проверку, выполнения команды "terraform apply -auto-approve" для конфигурации инфраструктуры
 
 <details>
 <summary>terraform apply --auto-approve</summary>
@@ -376,21 +377,20 @@ Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
 Outputs:
 
 external_ip_address_nodes = {
-  "vm-0" = "89.169.140.240"
-  "vm-1" = "158.160.28.123"
-  "vm-2" = "51.250.38.161"
+  "vm-0" = "51.250.65.18"
+  "vm-1" = "51.250.100.25"
+  "vm-2" = "51.250.37.143"
 }
 internal_ip_address_nodes = {
-  "vm-0" = "10.10.1.6"
-  "vm-1" = "10.10.2.9"
-  "vm-2" = "10.10.3.30"
+  "vm-0" = "10.10.1.24"
+  "vm-1" = "10.10.2.14"
+  "vm-2" = "10.10.3.4"
 }
 sergei@XWHD911:~/yandex-cloud/terraform$
 ```
 </details>
 
 ---
-
 - [x] Подготовленная инфрастуктура
 
 ![4](https://github.com/RziankinS/devops-netology/blob/85cef33b057292592f00105e658550c714542500/screen/project/%D0%B8%D0%BD%D1%84%D1%80%D0%B0%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0.png)
@@ -398,4 +398,6 @@ sergei@XWHD911:~/yandex-cloud/terraform$
 ---
 
 ![5](https://github.com/RziankinS/devops-netology/blob/ca6d747d9463e0a73f462f7f459f52df051706ad/screen/project/vms.png)
+
 ---
+## 2. Создание Kubernetes кластера
