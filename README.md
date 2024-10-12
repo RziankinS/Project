@@ -401,3 +401,55 @@ sergei@XWHD911:~/yandex-cloud/terraform$
 
 ---
 ## 2. Создание Kubernetes кластера
+
+- [x] Cоздания кластера k8s выполняется при помощи Kubespray:
+```bash
+sergei@XWHD911:~/yandex-cloud/kubespray$ declare -a IPS=(51.250.65.18 51.250.100.25 51.250.37.143)
+sergei@XWHD911:~/yandex-cloud/kubespray$ CONFIG_FILE=inventory/mycluster/hosts.yaml python3.11 contrib/inventory_builder/inventory.py ${IPS[@]}
+```
+- [x] Прописываем хосты в kubespray/inventory/mycluster/hosts.yaml
+```yaml
+all:
+  hosts:
+    node1:
+      ansible_host: 51.250.65.18
+      ip: 10.10.1.24
+    node2:
+      ansible_host: 51.250.100.25
+      ip: 10.10.2.14
+    node3:
+      ansible_host: 51.250.37.143
+      ip: 10.10.3.4
+  children:
+    kube_control_plane:
+      hosts:
+        node1:
+    kube_node:
+      hosts:
+        node2:
+        node3:
+    etcd:
+      hosts:
+        node1:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
+```
+- [x] Раскомментируем строку и дописываем ip мастер-ноды в: /kubespray/inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
+
+```
+ "supplementary_addresses_in_ssl_keys: [51.250.65.18]"
+```
+
+- [x] Запускаем плейбук:
+```bash
+sergei@XWHD911:~/yandex-cloud/kubespray$ ansible-playbook -i inventory/mycluster/hosts.yaml -u ubuntu --become --become-user=root cluster.yml -v
+```
+- [x] Дожидаемся успешного выполнения:
+
+![6](https://github.com/RziankinS/devops-netology/blob/c78c5ee15151c3d058a891821c2268e449a93ae1/screen/project/%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%20%D0%BF%D0%BB%D0%B5%D0%B9%D0%B1%D1%83%D0%BA%D0%B0.png)
+
+sergei@XWHD911:~/yandex-cloud/kubespray$ mkdir -p ~/.kube && ssh ubuntu@51.250.65.18 "sudo cat /root/.kube/config" >> ~/.kube/config
