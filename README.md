@@ -514,7 +514,7 @@ server: https://51.250.65.18:6443
 ![12](https://github.com/RziankinS/devops-netology/blob/6e01abd408f7751b7169fc96a6c7d81b61f04eff/screen/project/status_monitoring.png)
 
 ---
-- [x] Для доступа к мониторингу необходимо, сменить тип сервиса и добавить внешний порт:
+- [x] Для доступа к мониторингу необходимо сменить тип сервиса и добавить внешний порт:
 ```bash
 sergei@XWHD911:~/yandex-cloud$ kubectl get svc stable-kube-prometheus-sta-prometheus -n monitoring
 NAME                                    TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
@@ -539,3 +539,29 @@ sergei@XWHD911:~/yandex-cloud$ kubectl get svc stable-grafana -n monitoring -o j
 ![14](https://github.com/RziankinS/devops-netology/blob/d03dd85fab945f40d2ba9050f05d3760a3a6b069/screen/project/grafana.png)
 
 ---
+### 4.5. Разворачиваем тестовое приложение:
+[deployment.yml](https://github.com/RziankinS/Project/blob/a9bc5ed2d3bf6bff26c05e4a9deaa3bad8113f29/mynginxrepo/deploy/deployment.yml)
+
+```bash
+sergei@XWHD911:~/yandex-cloud$ kubectl create -f ~/yandex-cloud/mynginxrepo/devops-netology/project/mynginxrepo/deploy/deployment.yml
+daemonset.apps/myapp created
+service/myapp-service created
+sergei@XWHD911:~/yandex-cloud$ kubectl get all -n monitoring
+NAME                                                         READY   STATUS    RESTARTS      AGE
+pod/alertmanager-stable-kube-prometheus-sta-alertmanager-0   2/2     Running   0             97m
+pod/myapp-j6wdc                                              1/1     Running   0             56s
+pod/myapp-sm6zh                                              1/1     Running   0             56s
+pod/prometheus-stable-kube-prometheus-sta-prometheus-0       2/2     Running   0             97m
+pod/stable-grafana-9db4fb8d8-lhpmz                           3/3     Running   0             97m
+pod/stable-kube-prometheus-sta-operator-646df9869-gjw5t      1/1     Running   0             97m
+pod/stable-kube-state-metrics-9bdbc947-khdcs                 1/1     Running   1 (91m ago)   97m
+pod/stable-prometheus-node-exporter-gcrrc                    1/1     Running   0             97m
+pod/stable-prometheus-node-exporter-knckx                    1/1     Running   0             97m
+pod/stable-prometheus-node-exporter-tdwjw                    1/1     Running   0             97m
+```
+![15](https://github.com/RziankinS/devops-netology/blob/04cf78872b7456fb0794dbc6303c2843b4a1a66e/screen/project/myapp.png)
+
+---
+- [x] Http доступ к тестовому приложению:
+- Тестовое приложение http://51.250.65.18:31000/
+![16](https://github.com/RziankinS/devops-netology/blob/f37f5bbc9bd0673e187fdcc06064516e96839571/screen/project/test.png)
