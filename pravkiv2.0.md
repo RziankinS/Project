@@ -15,7 +15,7 @@ cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 Секрет с именем TF_API_TOKEN содержит API-ключ, необходимый для авторизации в Terraform Cloud и выполнения операций с проектами и инфраструктурой.
 
 ---
-- [x] После, произведенных изменений, прооверяем что все успешно отрабатывает:
+- [x] После, произведенных изменений, проверяем, что все успешно отрабатывает:
 ![новый тэг](https://github.com/RziankinS/devops-netology/blob/9d1edef1cecbc97cd4c5641180f333df8ed73877/screen/pravki/new_tag.png)
 
 ![terr_cloud](https://github.com/RziankinS/devops-netology/blob/9d1edef1cecbc97cd4c5641180f333df8ed73877/screen/pravki/new_tag_terr_cloud.png)
