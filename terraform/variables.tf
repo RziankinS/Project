@@ -21,8 +21,3 @@ variable "cidr" {
     "cidr" = [ "10.10.1.0/24", "10.10.2.0/24", "10.10.3.0/24" ]
   }
 }
-
-variable "yandex_cloud_auth" {
-  default = "y0_AgAAAAByvTpdAATuwQAAAAEO5OVIAAA4qKML0qJD9JUFpfLt4_JGjkhA_w"
-  sensitive = true
-}
