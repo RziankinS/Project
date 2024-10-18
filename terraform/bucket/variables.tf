@@ -9,8 +9,3 @@ variable "yandex_folder_id" {
 variable "zone" {
   default = "ru-central1-a"  
 }
-
-variable "yandex_cloud_auth" {
-  default = "y0_AgAAAAByvTpdAATuwQAAAAEO5OVIAAA4qKML0qJD9JUFpfLt4_JGjkhA_w"
-  sensitive = true
-}
